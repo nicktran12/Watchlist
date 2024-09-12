@@ -3,17 +3,26 @@ import {MovieCard} from "./MovieCard";
 import {TVCard} from "./TVCard";
 
 export const Add = () => {
-  const [query1, setQuery1] = useState("");
+  const [query, setQuery] = useState("");
+  const [show, setShow] = useState(false);
+
   const [results1, setResults1] = useState([]);
-  const [query2, setQuery2] = useState("");
   const [results2, setResults2] = useState([]);
 
-  const onChange1 = e1 => {
-    e1.preventDefault();
+  const onChange = e => {
+    e.preventDefault();
 
-    setQuery1(e1.target.value);
+    setQuery(e.target.value);
+    if (e.target.value.length > 0)
+      setShow(true)
+    else
+      setShow(false)
+  }
 
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${e1.target.value}`)
+  const movieChange = e => {
+    setResults2([]);
+
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${query}`)
     .then(res => res.json()
     .then(data => {
       if (!data.errors) {
@@ -24,12 +33,10 @@ export const Add = () => {
     }));
   }
 
-  const onChange2 = e2 => {
-    e2.preventDefault();
+  const tvChange = e => {
+    setResults1([]);
 
-    setQuery2(e2.target.value);
-
-    fetch(`https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${e2.target.value}`)
+    fetch(`https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${query}`)
     .then(res => res.json()
     .then(data => {
       if (!data.errors) {
@@ -46,16 +53,21 @@ export const Add = () => {
         <div className="add-content">
           <div className="input-wrapper">
             <input type="text" 
-            placeholder="Search movies"
-            value={query1}
-            onChange={onChange1}
+            placeholder="Search"
+            value={query}
+            onChange={onChange}
             />
 
-            <input type="text"
-            placeholder="Search TV shows"
-            value={query2}
-            onChange={onChange2}
-            />
+            {show && 
+              <button className="btn" onClick={() => {movieChange();}}>
+                Movies
+              </button>
+            }
+            {show && 
+              <button className="btn" onClick={() => {tvChange();}}>
+                TV shows
+              </button>
+            }
           </div>
 
           {results1.length > 0 && (
