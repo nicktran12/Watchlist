@@ -12,6 +12,7 @@ function App() {
     <Router>
       <Header/>
 
+      <h1>second test</h1>
       <Routes>
         <Route path="/watchlist" element={<Watchlist/>}/>
 
