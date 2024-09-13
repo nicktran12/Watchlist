@@ -23,7 +23,7 @@ export const GlobalProvider = props => {
     }
 
     const addMovieToWatching = movie => {
-        dispatch({type: "ADD_MOVIE_TO_WATCHING", payload: movie});
+        dispatch({type: "ADD_MOVIE_TO_WATCHING", payload: movie})
     }
 
     const addMovieToWatchlist = movie => {

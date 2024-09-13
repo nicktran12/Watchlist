@@ -5,7 +5,7 @@ export default (state, action) => {
                 ...state,
                 watched: [action.payload, ...state.watched]
             }
-
+        
         case "ADD_MOVIE_TO_WATCHING":
             return {
                 ...state,
