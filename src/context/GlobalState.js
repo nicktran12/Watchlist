@@ -2,8 +2,9 @@ import React, {createContext, useReducer, useEffect} from "react";
 import AppReducer from "./AppReducer";
 
 const initialState = {
-    watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : [],
     watched: localStorage.getItem("watched") ? JSON.parse(localStorage.getItem("watched")) : [],
+    watching: localStorage.getItem("watching") ? JSON.parse(localStorage.getItem("watching")) : [],
+    watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : [],
 }
 
 export const GlobalContext = createContext(initialState);
@@ -12,24 +13,31 @@ export const GlobalProvider = props => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     useEffect(() => {
-        localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
         localStorage.setItem("watched", JSON.stringify(state.watched));
+        localStorage.setItem("watching", JSON.stringify(state.watching));
+        localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
     }, [state])
-
-    const addMovieToWatchlist = movie => {
-        dispatch({type: "ADD_MOVIE_TO_WATCHLIST", payload: movie});
-    }
     
     const addMovieToWatched = movie => {
         dispatch({type: "ADD_MOVIE_TO_WATCHED", payload: movie});
     }
 
+    const addMovieToWatching = movie => {
+        dispatch({type: "ADD_MOVIE_TO_WATCHING", payload: movie});
+    }
+
+    const addMovieToWatchlist = movie => {
+        dispatch({type: "ADD_MOVIE_TO_WATCHLIST", payload: movie});
+    }
+
     return (
-        <GlobalContext.Provider value ={{
-                watchlist: state.watchlist, 
-                watched: state.watched, 
-                addMovieToWatchlist,
-                addMovieToWatched
+        <GlobalContext.Provider value = {{
+                watched: state.watched,
+                watching: state.watching,
+                watchlist: state.watchlist,
+                addMovieToWatched,
+                addMovieToWatching,
+                addMovieToWatchlist
             }}>
             {props.children}
         </GlobalContext.Provider>

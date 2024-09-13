@@ -2,23 +2,26 @@ import React, {useContext} from 'react';
 import {GlobalContext} from "../context/GlobalState";
 
 export const TVCard = ({tv}) => {
-    const {addMovieToWatchlist, watchlist} = useContext(GlobalContext);
     const {addMovieToWatched, watched} = useContext(GlobalContext);
+    const {addMovieToWatching, watching} = useContext(GlobalContext);
+    const {addMovieToWatchlist, watchlist} = useContext(GlobalContext);
 
-    let storedWatchlist = watchlist.find(o => o.id === tv.id);
     let storedWatched = watched.find(o => o.id === tv.id)
+    let storedWatching = watching.find(o => o.id === tv.id);
+    let storedWatchlist = watchlist.find(o => o.id === tv.id);
 
-    const watchlistDisabled = storedWatchlist ? true : false;
     const watchedDisabled = storedWatched ? true : false;
+    const watchingDisabled = storedWatching ? true : false;
+    const watchlistDisabled = storedWatchlist ? true : false;
 
     return (
-        <div className="result-card">
+        <div className="tv-card">
             <div className="poster-wrapper">
                 {tv.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/w200${tv.poster_path}`}
                     alt={`${tv.title} Poster`}
                     />
-                ) :(
+                ) : (
                     <div className="filler-poster"></div>
                 )}
             </div>
@@ -33,14 +36,21 @@ export const TVCard = ({tv}) => {
 
                 <div className="controls">
                     <button className="btn"
-                    disabled={watchlistDisabled}
-                    onClick={() => addMovieToWatchlist(tv)}>
-                        Add to Watchlist
-                    </button>
-                    <button className="btn"
                     disabled={watchedDisabled}
                     onClick={() => addMovieToWatched(tv)}>
                         Add to Watched
+                    </button>
+
+                    <button className="btn"
+                    disabled={watchingDisabled}
+                    onClick={() => addMovieToWatching(tv)}>
+                        Add to Watching
+                    </button>
+
+                    <button className="btn"
+                    disabled={watchlistDisabled}
+                    onClick={() => addMovieToWatchlist(tv)}>
+                        Add to Watchlist
                     </button>
                 </div>
             </div>
