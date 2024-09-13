@@ -59,12 +59,12 @@ export const Add = () => {
             />
 
             {show && 
-              <button className="btn" onClick={() => {movieChange();}}>
+              <button className="btn" onClick={() => {movieChange()}}>
                 Movies
               </button>
             }
             {show && 
-              <button className="btn" onClick={() => {tvChange();}}>
+              <button className="btn" onClick={() => {tvChange()}}>
                 TV shows
               </button>
             }

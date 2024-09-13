@@ -6,20 +6,23 @@ import {Watched} from "./components/Watched";
 import {Add} from "./components/Add";
 import './App.css';
 import "./lib/font-awesome/css/all.min.css";
+import {GlobalProvider} from "./context/GlobalState";
 
 function App() {
   return (
-    <Router>
-      <Header/>
-      
-      <Routes>
-        <Route path="/watchlist" element={<Watchlist/>}/>
+    <GlobalProvider>
+      <Router>
+        <Header/>
+        
+        <Routes>
+          <Route path="/watchlist" element={<Watchlist/>}/>
 
-        <Route path="/watched" element={<Watched/>}/>
+          <Route path="/watched" element={<Watched/>}/>
 
-        <Route exact path="/" element={<Add/>}/>
-      </Routes>
-    </Router>
+          <Route exact path="/" element={<Add/>}/>
+        </Routes>
+      </Router>
+    </GlobalProvider>
   );
 }
 
