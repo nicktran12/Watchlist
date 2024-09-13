@@ -2,9 +2,10 @@ import React, {useContext} from 'react';
 import {GlobalContext} from "../context/GlobalState";
 
 export const TVCard = ({tv}) => {
-    const {addMovieToWatched, watched} = useContext(GlobalContext);
-    const {addMovieToWatching, watching} = useContext(GlobalContext);
-    const {addMovieToWatchlist, watchlist} = useContext(GlobalContext);
+    const {
+        addMovieToWatched, addMovieToWatching, addMovieToWatchlist,
+        watched, watching, watchlist
+    } = useContext(GlobalContext);
 
     let storedWatched = watched.find(o => o.id === tv.id)
     let storedWatching = watching.find(o => o.id === tv.id);
@@ -15,12 +16,11 @@ export const TVCard = ({tv}) => {
     const watchlistDisabled = storedWatchlist ? true : false;
 
     return (
-        <div className="tv-card">
+        <div className="result-card">
             <div className="poster-wrapper">
                 {tv.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/w200${tv.poster_path}`}
-                    alt={`${tv.title} Poster`}
-                    />
+                    alt={`${tv.title} Poster`}/>
                 ) : (
                     <div className="filler-poster"></div>
                 )}

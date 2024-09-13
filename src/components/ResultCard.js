@@ -1,0 +1,19 @@
+import React from 'react'
+import {Controls} from "./Controls";
+
+export const ResultCard = ({movie, type}) => {
+  return (
+    <div className="card-list">
+        <div className="overlay"></div>
+
+        {movie.poster_path ? (
+            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+            alt={`${movie.title} Poster`}/>
+        ) : (
+            <div className="filler-poster"></div>
+        )}
+
+        <Controls movie={movie} type={type}/>
+    </div>
+  )
+}
