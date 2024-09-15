@@ -38,19 +38,19 @@ export const MovieCard = ({movie}) => {
                     <button className="btn"
                     disabled={watchedDisabled}
                     onClick={() => addMovieToWatched(movie)}>
-                        Add to Watched
+                        Watched
                     </button>
 
                     <button className="btn"
                     disabled={watchingDisabled}
                     onClick={() => addMovieToWatching(movie)}>
-                        Add to Watching
+                        Watching
                     </button>
 
                     <button className="btn"
                     disabled={watchlistDisabled}
                     onClick={() => addMovieToWatchlist(movie)}>
-                        Add to Watchlist
+                        Watchlist
                     </button>
                 </div>
             </div>

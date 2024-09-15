@@ -9,6 +9,9 @@ export const Add = () => {
   const [results1, setResults1] = useState([]);
   const [results2, setResults2] = useState([]);
 
+  const [movieDisabled, setMovieDisabled] = useState(false);
+  const [tvDisabled, setTVDisabled] = useState(false);
+
   const onChange = e => {
     e.preventDefault();
 
@@ -17,10 +20,14 @@ export const Add = () => {
       setShow(true)
     else
       setShow(false)
+      setMovieDisabled(false)
+      setTVDisabled(false)
   }
 
   const movieChange = e => {
     setResults2([]);
+    setTVDisabled(false);
+    setMovieDisabled(true)
 
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${query}`)
     .then(res => res.json()
@@ -35,6 +42,8 @@ export const Add = () => {
 
   const tvChange = e => {
     setResults1([]);
+    setMovieDisabled(false);
+    setTVDisabled(true);
 
     fetch(`https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${query}`)
     .then(res => res.json()
@@ -59,12 +68,12 @@ export const Add = () => {
             />
 
             {show && 
-              <button className="btn" onClick={() => {movieChange()}}>
+              <button id="search-btn" className="btn" onClick={() => {movieChange()}} disabled={movieDisabled}>
                 Movies
               </button>
             }
             {show && 
-              <button className="btn" onClick={() => {tvChange()}}>
+              <button id="search-btn" className="btn" onClick={() => {tvChange()}} disabled={tvDisabled}>
                 TV shows
               </button>
             }
