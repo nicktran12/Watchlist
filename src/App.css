@@ -96,7 +96,7 @@ header .nav-links li {
     font-weight: 600;
     display: inline-block;
     border: none;
-    font-size: 0.9rem;
+    font-size: 01rem;
     transition: all 0.3s ease;
     line-height: 1.1;
 }
@@ -135,6 +135,7 @@ input:focus {
 
 #search-btn {
     margin-right: 5px;
+    height: 35px;
 }
   
 .results {
