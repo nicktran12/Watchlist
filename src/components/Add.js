@@ -4,24 +4,25 @@ import {TVCard} from "./TVCard";
 
 export const Add = () => {
   const [query, setQuery] = useState("");
-  const [show, setShow] = useState(false);
 
   const [results1, setResults1] = useState([]);
   const [results2, setResults2] = useState([]);
 
-  const [movieDisabled, setMovieDisabled] = useState(false);
-  const [tvDisabled, setTVDisabled] = useState(false);
+  const [movieDisabled, setMovieDisabled] = useState(true);
+  const [tvDisabled, setTVDisabled] = useState(true);
 
   const onChange = e => {
     e.preventDefault();
 
     setQuery(e.target.value);
-    if (e.target.value.length > 0)
-      setShow(true)
-    else
-      setShow(false)
+    if (e.target.value.length > 0) {
       setMovieDisabled(false)
       setTVDisabled(false)
+    }
+    else {
+      setMovieDisabled(true)
+      setTVDisabled(true)
+    }
   }
 
   const movieChange = e => {
@@ -67,16 +68,13 @@ export const Add = () => {
             onChange={onChange}
             />
 
-            {show && 
-              <button id="search-btn" className="btn" onClick={() => {movieChange()}} disabled={movieDisabled}>
-                Movies
-              </button>
-            }
-            {show && 
-              <button id="search-btn" className="btn" onClick={() => {tvChange()}} disabled={tvDisabled}>
-                TV shows
-              </button>
-            }
+            <button id="search-btn" className="btn" onClick={() => {movieChange()}} disabled={movieDisabled}>
+              Movies
+            </button>
+
+            <button id="search-btn" className="btn" onClick={() => {tvChange()}} disabled={tvDisabled}>
+              TV shows
+            </button>
           </div>
 
           {results1.length > 0 && (
