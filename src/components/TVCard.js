@@ -29,8 +29,13 @@ export const TVCard = ({tv}) => {
             <div className="info">
                 <div className="header">
                     <h3 className="title">{tv.name}</h3>
+
                     <h4 className="overview">
                         {tv.overview ? tv.overview.substring(0, 180) + "..." : "---"}
+                    </h4>
+
+                    <h4 className="rating">
+                        {tv.vote_average ? tv.vote_average.toFixed(1) + "/10" : "--/10"}
                     </h4>
                 </div>
 

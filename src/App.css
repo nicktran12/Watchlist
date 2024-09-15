@@ -71,8 +71,7 @@ header a:hover {
 header .brand a {
     font-weight: 700;
     font-size: 1.5rem;
-    margin-left: 32px;
-    margin-right: 500px;
+    margin-right: 555px;
 }
   
 header .nav-links {
@@ -186,7 +185,13 @@ input:focus {
     font-weight: 300;
     color: var(--primary);
     margin-left: 10px;
-    margin-bottom: 60px;
+}
+
+.result-card .info .rating {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--primary);
+    margin-left: 10px;
 }
 
 .info .header {
@@ -194,7 +199,7 @@ input:focus {
 }
 
 .controls {
-    margin-left: 15px;
+    margin-left: 25px;
     margin-bottom: 25px;
 }
   

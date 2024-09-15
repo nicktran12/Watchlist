@@ -29,8 +29,13 @@ export const MovieCard = ({movie}) => {
             <div className="info">
                 <div className="header">
                     <h3 className="title">{movie.title}</h3>
+
                     <h4 className="overview">
                         {movie.overview ? movie.overview.substring(0, 180) + "..." : "---"}
+                    </h4>
+
+                    <h4 className="rating">
+                        {movie.vote_average ? movie.vote_average.toFixed(1) + "/10" : "--/10"}
                     </h4>
                 </div>
 
