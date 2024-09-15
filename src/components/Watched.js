@@ -12,7 +12,7 @@ export const Watched = () => {
           <h1 className="heading">Already Watched</h1>
 
           <span className="count-pill">
-            {watched.length} {watched.length === 1 ? "Movie" : "Movies"}
+            {watched.length} {watched.length === 1 ? "Movie/Show" : "Movies/Shows"}
           </span>
         </div>
 
