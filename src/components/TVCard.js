@@ -30,7 +30,7 @@ export const TVCard = ({tv}) => {
                 <div className="header">
                     <h3 className="title">{tv.name}</h3>
                     <h4 className="overview">
-                        {tv.overview ? tv.overview.substring(0, 180) + "..." : "-"}
+                        {tv.overview ? tv.overview.substring(0, 180) + "..." : "---"}
                     </h4>
                 </div>
 

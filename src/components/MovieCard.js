@@ -30,7 +30,7 @@ export const MovieCard = ({movie}) => {
                 <div className="header">
                     <h3 className="title">{movie.title}</h3>
                     <h4 className="overview">
-                        {movie.overview ? movie.overview.substring(0, 180) + "..." : "-"}
+                        {movie.overview ? movie.overview.substring(0, 180) + "..." : "---"}
                     </h4>
                 </div>
 

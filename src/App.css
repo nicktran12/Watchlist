@@ -300,6 +300,11 @@ input:focus {
     color: var(--secondary);
     cursor: pointer;
 }
+
+.ctrl-btn:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
   
 .movie-page .no-movies {
     color: #c4c4c4;
