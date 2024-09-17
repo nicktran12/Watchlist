@@ -6,6 +6,7 @@ import {Watching} from "./components/Watching";
 import {Watchlist} from "./components/Watchlist";
 import {Add} from "./components/Add";
 import './App.css';
+import "./lib/font-awesome/css/all.min.css";
 import {GlobalProvider} from "./context/GlobalState";
 
 function App() {
