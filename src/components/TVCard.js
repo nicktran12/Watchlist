@@ -19,7 +19,7 @@ export const TVCard = ({tv}) => {
         <div className="result-card">
             <div className="poster-wrapper">
                 {tv.poster_path ? (
-                    <img src={`https://image.tmdb.org/t/p/w200${tv.poster_path}`}
+                    <img src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
                     alt={`${tv.title} Poster`}/>
                 ) : (
                     <div className="filler-poster"></div>
