@@ -40,19 +40,19 @@ export const MovieCard = ({movie}) => {
                 </div>
 
                 <div className="controls">
-                    <button className="btn"
+                    <button className="add-btn"
                     disabled={watchedDisabled}
                     onClick={() => addMovieToWatched(movie)}>
                         Watched
                     </button>
 
-                    <button className="btn"
+                    <button className="add-btn"
                     disabled={watchingDisabled}
                     onClick={() => addMovieToWatching(movie)}>
                         Watching
                     </button>
 
-                    <button className="btn"
+                    <button className="add-btn"
                     disabled={watchlistDisabled}
                     onClick={() => addMovieToWatchlist(movie)}>
                         Watchlist
