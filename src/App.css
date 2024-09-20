@@ -152,22 +152,25 @@ input:focus {
     margin-bottom: 20px;
 }
 
-.result-card .poster-wrapper img {
+.result-card .poster-wrapper {
     float: left;
-    width: 200px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-}
-  
-.result-card .poster-wrapper img .filler-poster {
     width: 100%;
-    height: 100%;
-    background-color: #dbdada;
+    height: 300px;
+    display: block;
+    object-fit: cover;
+    background-color: #bfbcbc;
     border-radius: 5px;
     margin-right: 15px;
-    display: block;
     color: transparent;
+    flex: 0 0 200px;
+}
+
+.result-card .poster-wrapper img {
+    float: left;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
 }
   
 .result-card .info {
@@ -288,6 +291,20 @@ input:focus {
     width: 100%;
     height: 100%;
     display: block;
+}
+
+.card-list .filler-poster {
+    float: left;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background-color: #bfbcbc;
+    border-radius: 5px;
+    margin-right: 15px;
+    color: transparent;
+    flex: 0 0 200px;
+    clear: both;
 }
   
 .card-list .overlay {
