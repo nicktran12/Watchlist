@@ -1,7 +1,7 @@
 import React from 'react'
 import {Controls} from "./Controls";
 
-export const ResultCard = ({movie, type}) => {
+export const ResultCard = ({movie, status}) => {
   return (
     <div className="card-list">
         <div className="overlay"></div>
@@ -13,7 +13,7 @@ export const ResultCard = ({movie, type}) => {
             <div className="filler-poster"></div>
         )}
 
-        <Controls movie={movie} type={type}/>
+        <Controls movie={movie} status={status}/>
     </div>
   )
 }

@@ -18,9 +18,9 @@ export const Watched = () => {
 
         {watched.length > 0 ? (
           <div className="movie-grid">
-          {watched.map(movie => (
-            <ResultCard movie={movie} type="watched"/>
-          ))}
+            {watched.map(movie => (
+              <ResultCard movie={movie} status="watched"/>
+            ))}
         </div>
         ) : (
           <h2 className="no-movies">Nothing watched</h2>

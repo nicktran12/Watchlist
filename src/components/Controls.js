@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {GlobalContext} from "../context/GlobalState"; 
 
-export const Controls = ({movie, type}) => {
+export const Controls = ({movie, status}) => {
     const {
         removeMovieFromWatched, removeMovieFromWatching, removeMovieFromWatchlist,
         addMovieToWatched, addMovieToWatching, addMovieToWatchlist,
@@ -24,7 +24,7 @@ export const Controls = ({movie, type}) => {
     
     return (
         <div className="inner-card-controls">
-            {type === "watched" && 
+            {status === "watched" && 
                 <>
                 <button className="remove-btn"
                 onClick={() => removeMovieFromWatched(movie.id)}>
@@ -62,7 +62,7 @@ export const Controls = ({movie, type}) => {
                 </>
             }
 
-            {type === "watching" && (
+            {status === "watching" && (
                 <>
                 <button className="remove-btn"
                 onClick={() => removeMovieFromWatching(movie.id)}>
@@ -100,7 +100,7 @@ export const Controls = ({movie, type}) => {
                 </>
             )}
 
-            {type === "watchlist" && (
+            {status === "watchlist" && (
                 <>
                 <button className="remove-btn"
                 onClick={() => removeMovieFromWatchlist(movie.id)}>

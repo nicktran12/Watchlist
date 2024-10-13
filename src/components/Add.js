@@ -1,15 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {MovieCard} from "./MovieCard";
 import {TVCard} from "./TVCard";
 
 export const Add = () => {
   const [query, setQuery] = useState("");
 
-  const [results1, setResults1] = useState([]);
-  const [results2, setResults2] = useState([]);
+  const [defaultResults, showDefaultResults] = useState(true);
+  const [suggestedMovies, setSuggestedMovies] = useState([]);
+
+  const [movieResults, setMovieResults] = useState([]);
+  const [tvResults, setTVResults] = useState([]);
 
   const [movieDisabled, setMovieDisabled] = useState(true);
   const [tvDisabled, setTVDisabled] = useState(true);
+
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`)
+      .then(res => res.json()
+      .then(data => {
+        if (!data.errors) {
+          setSuggestedMovies(data.results);
+        } else {
+          setSuggestedMovies([]);
+        }
+    }))
+  })
 
   const onChange = e => {
     e.preventDefault();
@@ -20,13 +35,15 @@ export const Add = () => {
       setTVDisabled(false)
     }
     else {
+      showDefaultResults(true)
       setMovieDisabled(true)
       setTVDisabled(true)
     }
   }
 
   const movieChange = e => {
-    setResults2([]);
+    showDefaultResults(false)
+    setTVResults([]);
     setTVDisabled(false);
     setMovieDisabled(true)
 
@@ -34,15 +51,16 @@ export const Add = () => {
     .then(res => res.json()
     .then(data => {
       if (!data.errors) {
-        setResults1(data.results);
+        setMovieResults(data.results);
       } else {
-        setResults1([]);
+        setMovieResults([]);
       }
-    }));
+    }))
   }
 
   const tvChange = e => {
-    setResults1([]);
+    showDefaultResults(false)
+    setMovieResults([]);
     setMovieDisabled(false);
     setTVDisabled(true);
 
@@ -50,9 +68,9 @@ export const Add = () => {
     .then(res => res.json()
     .then(data => {
       if (!data.errors) {
-        setResults2(data.results);
+        setTVResults(data.results);
       } else {
-        setResults2([]);
+        setTVResults([]);
       }
     }));
   }
@@ -77,9 +95,9 @@ export const Add = () => {
             </button>
           </div>
 
-          {results1.length > 0 && (
+          {suggestedMovies.length > 0 && defaultResults && (
             <ul className="results">
-              {results1.map(movie => (
+              {suggestedMovies.map(movie => (
                 <li key={movie.id}>
                   <MovieCard movie={movie}/>
                 </li>
@@ -87,9 +105,19 @@ export const Add = () => {
             </ul>
           )}
 
-          {results2.length > 0 && (
+          {movieResults.length > 0 && !defaultResults && (
             <ul className="results">
-              {results2.map(tv => (
+              {movieResults.map(movie => (
+                <li key={movie.id}>
+                  <MovieCard movie={movie}/>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {tvResults.length > 0 && !defaultResults && (
+            <ul className="results">
+              {tvResults.map(tv => (
                 <li key={tv.id}>
                   <TVCard tv={tv}/>
                 </li>
