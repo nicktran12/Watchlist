@@ -32,9 +32,17 @@ export const Controls = ({movie, status}) => {
                 </button>
 
                 <div className="move-controls">
-                    <button className="move-btn"
+                    <button className="edit-btn"
                     onClick={() => {moveClick()}}>
-                        Move
+                        <i className="fa-solid fa fa-ellipsis-v"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-left"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
 
                     {showLocation &&
@@ -44,6 +52,7 @@ export const Controls = ({movie, status}) => {
                         onClick={() => {
                             removeMovieFromWatched(movie.id);
                             addMovieToWatching(movie);
+                            moveClick();
                         }}>
                             Watching
                         </button>
@@ -53,6 +62,7 @@ export const Controls = ({movie, status}) => {
                         onClick={() => {
                             removeMovieFromWatched(movie.id);
                             addMovieToWatchlist(movie);
+                            moveClick();
                         }}>
                             Watchlist
                         </button>
@@ -70,9 +80,17 @@ export const Controls = ({movie, status}) => {
                 </button>
 
                 <div className="move-controls">
-                    <button className="move-btn"
+                    <button className="edit-btn"
                     onClick={() => {moveClick()}}>
-                        Move
+                        <i className="fa-solid fa fa-ellipsis-v"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-left"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
 
                     {showLocation &&
@@ -82,6 +100,7 @@ export const Controls = ({movie, status}) => {
                         onClick={() => {
                             removeMovieFromWatching(movie.id);
                             addMovieToWatched(movie);
+                            moveClick();
                         }}>
                             Watched
                         </button>
@@ -91,6 +110,7 @@ export const Controls = ({movie, status}) => {
                         onClick={() => {
                             removeMovieFromWatching(movie.id);
                             addMovieToWatchlist(movie);
+                            moveClick();
                         }}>
                             Watchlist
                         </button>
@@ -108,9 +128,17 @@ export const Controls = ({movie, status}) => {
                 </button>
 
                 <div className="move-controls">
-                    <button className="move-btn"
+                    <button className="edit-btn"
                     onClick={() => {moveClick()}}>
-                        Move
+                        <i className="fa-solid fa fa-ellipsis-v"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-left"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
 
                     {showLocation &&
@@ -120,6 +148,7 @@ export const Controls = ({movie, status}) => {
                         onClick={() => {
                             removeMovieFromWatchlist(movie.id);
                             addMovieToWatched(movie);
+                            moveClick();
                         }}>
                             Watched
                         </button>
@@ -129,6 +158,7 @@ export const Controls = ({movie, status}) => {
                         onClick={() => {
                             removeMovieFromWatchlist(movie.id);
                             addMovieToWatching(movie);
+                            moveClick();
                         }}>
                             Watching
                         </button>
