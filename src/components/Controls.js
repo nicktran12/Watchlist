@@ -26,23 +26,10 @@ export const Controls = ({movie, status}) => {
         <div className="inner-card-controls">
             {status === "watched" && 
                 <>
-                <button className="remove-btn"
-                onClick={() => removeMovieFromWatched(movie.id)}>
-                    <i className="fa-fw fa fa-times"></i>
-                </button>
-
                 <div className="move-controls">
                     <button className="edit-btn"
                     onClick={() => {moveClick()}}>
                         <i className="fa-solid fa fa-ellipsis-v"></i>
-                    </button>
-
-                    <button className="move-btn">
-                        <i className="fa-solid fa fa-arrow-left"></i>
-                    </button>
-
-                    <button className="move-btn">
-                        <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
 
                     {showLocation &&
@@ -68,29 +55,31 @@ export const Controls = ({movie, status}) => {
                         </button>
                         </>
                     }
+                </div>
+
+                <button className="remove-btn"
+                onClick={() => removeMovieFromWatched(movie.id)}>
+                    <i className="fa-fw fa fa-times"></i>
+                </button>
+                
+                <div className="move-btns">
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-left"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-right"></i>
+                    </button>
                 </div>
                 </>
             }
 
             {status === "watching" && (
                 <>
-                <button className="remove-btn"
-                onClick={() => removeMovieFromWatching(movie.id)}>
-                    <i className="fa-fw fa fa-times"></i>
-                </button>
-
                 <div className="move-controls">
                     <button className="edit-btn"
                     onClick={() => {moveClick()}}>
                         <i className="fa-solid fa fa-ellipsis-v"></i>
-                    </button>
-
-                    <button className="move-btn">
-                        <i className="fa-solid fa fa-arrow-left"></i>
-                    </button>
-
-                    <button className="move-btn">
-                        <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
 
                     {showLocation &&
@@ -117,28 +106,30 @@ export const Controls = ({movie, status}) => {
                         </>
                     }
                 </div>
-                </>
-            )}
 
-            {status === "watchlist" && (
-                <>
                 <button className="remove-btn"
-                onClick={() => removeMovieFromWatchlist(movie.id)}>
+                onClick={() => removeMovieFromWatching(movie.id)}>
                     <i className="fa-fw fa fa-times"></i>
                 </button>
 
-                <div className="move-controls">
-                    <button className="edit-btn"
-                    onClick={() => {moveClick()}}>
-                        <i className="fa-solid fa fa-ellipsis-v"></i>
-                    </button>
-
+                <div className="move-btns">
                     <button className="move-btn">
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
                     <button className="move-btn">
                         <i className="fa-solid fa fa-arrow-right"></i>
+                    </button>
+                </div>
+                </>
+            )}
+
+            {status === "watchlist" && (
+                <>
+                <div className="move-controls">
+                    <button className="edit-btn"
+                    onClick={() => {moveClick()}}>
+                        <i className="fa-solid fa fa-ellipsis-v"></i>
                     </button>
 
                     {showLocation &&
@@ -164,6 +155,21 @@ export const Controls = ({movie, status}) => {
                         </button>
                         </>
                     }
+                </div>
+
+                <button className="remove-btn"
+                    onClick={() => removeMovieFromWatchlist(movie.id)}>
+                        <i className="fa-fw fa fa-times"></i>
+                </button>
+
+                <div className="move-btns">
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-left"></i>
+                    </button>
+
+                    <button className="move-btn">
+                        <i className="fa-solid fa fa-arrow-right"></i>
+                    </button>
                 </div>
                 </>
             )}
