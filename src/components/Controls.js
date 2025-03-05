@@ -4,7 +4,7 @@ import {GlobalContext} from "../context/GlobalState";
 export const Controls = ({movie, status}) => {
     const {
         removeMovieFromWatched, removeMovieFromWatching, removeMovieFromWatchlist,
-        addMovieToWatched, addMovieToWatching, addMovieToWatchlist,
+        addMovieToWatched, addMovieToWatching, addMovieToWatchlist, moveMovie,
         watched, watching, watchlist
     } = useContext(GlobalContext);
 
@@ -63,11 +63,13 @@ export const Controls = ({movie, status}) => {
                 </button>
                 
                 <div className="move-btns">
-                    <button className="move-btn">
+                    <button className="move-btn"
+                    onClick={() => moveMovie(status, movie.id, -1)}>
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
-                    <button className="move-btn">
+                    <button className="move-btn"
+                    onClick={() => moveMovie(status, movie.id, 1)}>
                         <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
                 </div>
@@ -113,11 +115,13 @@ export const Controls = ({movie, status}) => {
                 </button>
 
                 <div className="move-btns">
-                    <button className="move-btn">
+                    <button className="move-btn"
+                    onClick={() => moveMovie(status, movie.id, -1)}>
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
-                    <button className="move-btn">
+                    <button className="move-btn"
+                    onClick={() => moveMovie(status, movie.id, 1)}>
                         <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
                 </div>
@@ -163,11 +167,13 @@ export const Controls = ({movie, status}) => {
                 </button>
 
                 <div className="move-btns">
-                    <button className="move-btn">
+                    <button className="move-btn"
+                    onClick={() => moveMovie(status, movie.id, -1)}>
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
-                    <button className="move-btn">
+                    <button className="move-btn"
+                    onClick={() => moveMovie(status, movie.id, 1)}>
                         <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
                 </div>

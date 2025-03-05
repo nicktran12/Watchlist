@@ -16,13 +16,13 @@ function App() {
         <Header/>
         
         <Routes>
-          <Route path="/watched" element={<Watched/>}/>
+          <Route exact path="/" element={<Watched/>}/>
 
           <Route path="/watching" element={<Watching/>}/>
 
           <Route path="/watchlist" element={<Watchlist/>}/>
 
-          <Route exact path="/" element={<Add/>}/>
+          <Route path="/add" element={<Add/>}/>
         </Routes>
       </Router>
     </GlobalProvider>
