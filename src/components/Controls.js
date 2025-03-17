@@ -17,6 +17,11 @@ export const Controls = ({movie, status}) => {
     const watchlistDisabled = storedWatchlist ? true : false;
 
     const [showLocation, setShowLocation] = useState(false);
+
+    const movieList = status === "watched" ? watched : 
+        status === "watching" ? watching : 
+        watchlist;
+    const index = movieList.findIndex(m => m.id === movie.id )
     
     const moveClick = e => {
         setShowLocation(showLocation => !showLocation);
@@ -64,12 +69,14 @@ export const Controls = ({movie, status}) => {
                 
                 <div className="move-btns">
                     <button className="move-btn"
-                    onClick={() => moveMovie(status, movie.id, -1)}>
+                    onClick={() => moveMovie(status, movie.id, -1)}
+                    disabled={index === 0}>
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
                     <button className="move-btn"
-                    onClick={() => moveMovie(status, movie.id, 1)}>
+                    onClick={() => moveMovie(status, movie.id, 1)}
+                    disabled={index === movieList.length - 1}>
                         <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
                 </div>
@@ -116,12 +123,14 @@ export const Controls = ({movie, status}) => {
 
                 <div className="move-btns">
                     <button className="move-btn"
-                    onClick={() => moveMovie(status, movie.id, -1)}>
+                    onClick={() => moveMovie(status, movie.id, -1)}
+                    disabled={index === 0}>
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
                     <button className="move-btn"
-                    onClick={() => moveMovie(status, movie.id, 1)}>
+                    onClick={() => moveMovie(status, movie.id, 1)}
+                    disabled={index === movieList.length - 1}>
                         <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
                 </div>
@@ -168,12 +177,14 @@ export const Controls = ({movie, status}) => {
 
                 <div className="move-btns">
                     <button className="move-btn"
-                    onClick={() => moveMovie(status, movie.id, -1)}>
+                    onClick={() => moveMovie(status, movie.id, -1)}
+                    disabled={index === 0}>
                         <i className="fa-solid fa fa-arrow-left"></i>
                     </button>
 
                     <button className="move-btn"
-                    onClick={() => moveMovie(status, movie.id, 1)}>
+                    onClick={() => moveMovie(status, movie.id, 1)}
+                    disabled={index === movieList.length - 1}>
                         <i className="fa-solid fa fa-arrow-right"></i>
                     </button>
                 </div>

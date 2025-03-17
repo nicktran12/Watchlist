@@ -420,6 +420,13 @@ input:focus {
     color: var(--secondary);
     cursor: pointer;
 }
+
+.move-btn:disabled {
+    background-color: #373333;
+    color: #ccc;
+    pointer-events: none;
+    opacity: 80%;
+}
   
 .movie-page .no-movies {
     color: #c4c4c4;
