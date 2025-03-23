@@ -350,6 +350,7 @@ input:focus {
     transition: all 0.3s ease;
     font-size: 1.2rem;
     padding: 2px;
+    padding-top: 3px;
     margin-right: 3px;
 }
 
@@ -387,6 +388,7 @@ input:focus {
     transition: all 0.3s ease;
     font-size: 1rem;
     padding: 1px;
+    padding-top: 2.5px;
     margin: 0;
     position: absolute;
     top: 6px;
