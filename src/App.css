@@ -402,21 +402,22 @@ input:focus {
 
 .move-btns {
     position: absolute;
+    display: flex;
     width: 70px;
     top: 265px;
-    left: 73px;
+    left: 67px;
 }
 
 .move-btn {
     color: #fefefe;
     background-color: #070000;
     border: none;
+    outline: none;
     transition: all 0.3s ease;
-    font-size: 0.8rem;
-    padding: 5px;
+    font-size: 0.9rem;
     margin: 3px;
-    border-radius: 100%;
-    transform: scaleX(1.2);
+    height: 24px;
+    border-radius: 50%;
 }
 
 .move-btn:hover {
