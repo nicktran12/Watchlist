@@ -348,7 +348,7 @@ input:focus {
     border-radius: 10px;
     border: none;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 2px;
     margin-right: 3px;
 }
@@ -385,12 +385,12 @@ input:focus {
     border-radius: 50%;
     border: none;
     transition: all 0.3s ease;
-    font-size: 0.75rem;
-    padding: 2px;
+    font-size: 1rem;
+    padding: 1px;
     margin: 0;
     position: absolute;
     top: 6px;
-    left: 169px;
+    left: 168px;
 }
 
 .remove-btn:hover {
@@ -400,8 +400,8 @@ input:focus {
 
 .move-btns {
     position: absolute;
-    width: 50px;
-    top: 268px;
+    width: 70px;
+    top: 265px;
     left: 73px;
 }
 
@@ -410,10 +410,11 @@ input:focus {
     background-color: #070000;
     border: none;
     transition: all 0.3s ease;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 5px;
-    margin: 2px;
+    margin: 3px;
     border-radius: 100%;
+    transform: scaleX(1.2);
 }
 
 .move-btn:hover {
@@ -422,10 +423,8 @@ input:focus {
 }
 
 .move-btn:disabled {
-    background-color: #373333;
-    color: #ccc;
+    opacity: 0.5;
     pointer-events: none;
-    opacity: 0.8;
 }
   
 .movie-page .no-movies {
