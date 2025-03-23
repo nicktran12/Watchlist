@@ -351,7 +351,6 @@ input:focus {
     font-size: 1.2rem;
     padding: 2px;
     padding-top: 3px;
-    margin-right: 3px;
 }
 
 .edit-btn:hover {
@@ -367,7 +366,7 @@ input:focus {
     font-size: 0.7rem;
     padding: 5px;
     border-radius: 5px;
-    margin-left: 2px;
+    margin-left: 5px;
 }
   
 .ctrl-btn:hover {
