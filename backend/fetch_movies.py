@@ -28,6 +28,6 @@ def get_all_movies(genre_id, pages=10):
     return all_movies
 
 def save_to_csv(movies):
-    df = pd.DataFrame(movies, columns=["id", "name", "overview", "genre_ids", "poster_path"])
+    df = pd.DataFrame(movies, columns=["id", "name", "overview", "genre_ids", "poster_path", "vote_average"])
     df.to_csv(OUTPUT_FILE, index=False)
     print(f"Saved {len(df)} movies to {OUTPUT_FILE}")
