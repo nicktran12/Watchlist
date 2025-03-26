@@ -6,11 +6,8 @@ from recommendations import recommend_movies
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
-@app.route("/fetch-movies", methods=["POST", "OPTIONS"])
+@app.route("/fetch-movies", methods=["POST"])
 def fetch_movies_route():
-    if request.method == "OPTIONS":
-        return jsonify({"message": "Preflight request successful"}), 200
-
     data = request.get_json()
     genre_id = data.get("genre_id")
 
