@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback, useContext} from 'react';
 import {MovieCard} from "./MovieCard";
 import {TVCard} from "./TVCard";
+import {GlobalContext} from "../context/GlobalState";
 
 export const Add = () => {
+  const {watched} = useContext(GlobalContext);
+
   const [query, setQuery] = useState("");
 
   const [defaultResults, showDefaultResults] = useState(true);
@@ -14,17 +17,56 @@ export const Add = () => {
   const [movieDisabled, setMovieDisabled] = useState(true);
   const [tvDisabled, setTVDisabled] = useState(true);
 
-  useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`)
-      .then(res => res.json()
-      .then(data => {
-        if (!data.errors) {
-          setSuggestedMovies(data.results);
-        } else {
-          setSuggestedMovies([]);
+  const getMostRecentWatchedMovie = () => {
+    if (watched.length === 0) {
+      return null;
+    }
+    return watched[0];
+  }
+
+  const mostRecentMovie = getMostRecentWatchedMovie();
+  const genreID = mostRecentMovie?.genre_ids[0];
+
+  const getRecommendations = useCallback(async () => {
+    if (genreID && watched.length > 0) {
+      try {
+        const fetchResponse = await fetch("http://localhost:5001/fetch-movies", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({genre_id: genreID}),
+        })
+
+        if (!fetchResponse.ok) {
+          console.error("Error fetching movies");
         }
-    }))
-  })
+
+        const recommendationsResponse = await fetch("http://localhost:5001/recommendations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(mostRecentMovie),
+        })
+
+        if (recommendationsResponse.ok) {
+          const recommendations = await recommendationsResponse.json();
+          setSuggestedMovies(recommendations);
+        } else {
+          console.error("Error fetching recommendations");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  }, [genreID, watched, mostRecentMovie])
+
+  useEffect(() => {
+    if (genreID && watched.length > 0) {
+      getRecommendations();
+    }
+  }, [genreID, watched, getRecommendations])
 
   const onChange = e => {
     e.preventDefault();
@@ -97,9 +139,9 @@ export const Add = () => {
 
           {suggestedMovies.length > 0 && defaultResults && (
             <ul className="results">
-              {suggestedMovies.map(movie => (
-                <li key={movie.id}>
-                  <MovieCard movie={movie}/>
+              {suggestedMovies.map(tv => (
+                <li key={tv.id}>
+                  <TVCard tv={tv}/>
                 </li>
               ))}
             </ul>
