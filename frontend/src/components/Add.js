@@ -62,7 +62,7 @@ export const Add = () => {
         console.error("Error:", error);
       }
     }
-  }, [genreIDs, watched, mostRecent, type])
+  }, [genreIDs, watched, mostRecent, type, id])
 
   useEffect(() => {
     if (genreIDs && watched.length > 0) {
