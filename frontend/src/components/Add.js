@@ -17,25 +17,27 @@ export const Add = () => {
   const [movieDisabled, setMovieDisabled] = useState(true);
   const [tvDisabled, setTVDisabled] = useState(true);
 
-  const getMostRecentWatchedMovie = () => {
+  const getMostRecentWatched = () => {
     if (watched.length === 0) {
       return null;
     }
     return watched[0];
   }
 
-  const mostRecentMovie = getMostRecentWatchedMovie();
-  const genreID = mostRecentMovie?.genre_ids[0];
+  const mostRecent = getMostRecentWatched();
+  const genreIDs = mostRecent?.genre_ids.join(",") ?? "";
+  const type = mostRecent?.title ? "movie" : mostRecent?.name ? "tv" : null;
+  const id = mostRecent?.id;
 
   const getRecommendations = useCallback(async () => {
-    if (genreID && watched.length > 0) {
+    if (genreIDs && type && watched.length > 0) {
       try {
         const fetchResponse = await fetch("http://localhost:5001/fetch-movies", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({genre_id: genreID}),
+          body: JSON.stringify({genre_id: genreIDs, type: type, id: id}),
         })
 
         if (!fetchResponse.ok) {
@@ -47,7 +49,7 @@ export const Add = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(mostRecentMovie),
+          body: JSON.stringify({...mostRecent, type}),
         })
 
         if (recommendationsResponse.ok) {
@@ -60,13 +62,13 @@ export const Add = () => {
         console.error("Error:", error);
       }
     }
-  }, [genreID, watched, mostRecentMovie])
+  }, [genreIDs, watched, mostRecent, type])
 
   useEffect(() => {
-    if (genreID && watched.length > 0) {
+    if (genreIDs && watched.length > 0) {
       getRecommendations();
     }
-  }, [genreID, watched, getRecommendations])
+  }, [genreIDs, watched, getRecommendations])
 
   const onChange = e => {
     e.preventDefault();
@@ -139,9 +141,12 @@ export const Add = () => {
 
           {suggestedMovies.length > 0 && defaultResults && (
             <ul className="results">
-              {suggestedMovies.map(tv => (
-                <li key={tv.id}>
-                  <TVCard tv={tv}/>
+              {suggestedMovies.map(item => (
+                <li key={item.id}>
+                  {item.title
+                    ? <MovieCard movie={item}/>
+                    : <TVCard tv={item}/>
+                  }
                 </li>
               ))}
             </ul>
