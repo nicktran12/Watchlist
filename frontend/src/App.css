@@ -322,10 +322,14 @@ input:focus {
 }
   
 .card-list .inner-card-controls {
-    display: inline;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: absolute;
-    top: 1%;
-    left: 3%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     padding: 3px;
     transition: all 0.3s ease;
@@ -336,10 +340,16 @@ input:focus {
     opacity: 1;
 }
 
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.4vw;
+}
+
 .card-list .inner-card-controls .move-controls {
     width: 130px;
     display: flex;
-    margin-top: 3px;
 }
 
 .edit-btn {
@@ -351,6 +361,7 @@ input:focus {
     font-size: 1.2rem;
     padding: 2px;
     padding-top: 3px;
+    margin-left: 0.4vw;
 }
 
 .edit-btn:hover {
@@ -366,7 +377,7 @@ input:focus {
     font-size: 0.7rem;
     padding: 5px;
     border-radius: 5px;
-    margin-left: 5px;
+    margin-left: 0.4vw;
 }
   
 .ctrl-btn:hover {
@@ -389,10 +400,8 @@ input:focus {
     padding: 1px;
     padding-top: 2.3px;
     padding-right: 1px;
-    margin: 0;
-    position: absolute;
-    top: 6px;
-    left: 168px;
+    margin-right: 0.4vw;
+    align-self: flex-start;
 }
 
 .remove-btn:hover {
@@ -401,21 +410,29 @@ input:focus {
 }
 
 .move-btns {
-    position: absolute;
     display: flex;
-    width: 70px;
-    top: 265px;
-    left: 67px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .move-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: #fefefe;
     background-color: #070000;
     border: none;
     outline: none;
     transition: all 0.3s ease;
     font-size: 0.9rem;
-    margin: 3px;
+    padding-top: 0.1vw;
+    margin: 0.25vw;
+    margin-bottom: 0.5vw;
+    text-align: center;
+    width: 24px;
     height: 24px;
     border-radius: 50%;
 }
