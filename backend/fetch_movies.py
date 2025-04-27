@@ -8,7 +8,7 @@ load_dotenv()
 API_KEY = os.getenv("TMDB_API_KEY")
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "data", "movies.csv")
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache")
-CACHE_EXPIRATION_SECONDS = 10
+CACHE_EXPIRATION_SECONDS = 7 * 24 * 60 * 60
 
 def fetch_movies(genre_ids, content_type, page=1):
     url = f"https://api.themoviedb.org/3/discover/{content_type}"
