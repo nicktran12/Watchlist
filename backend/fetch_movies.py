@@ -8,7 +8,7 @@ load_dotenv()
 API_KEY = os.getenv("TMDB_API_KEY")
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "data", "movies.csv")
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache")
-CACHE_EXPIRATION_SECONDS = 7 * 24 * 60 * 60
+CACHE_EXPIRATION_SECONDS = 10
 
 def fetch_movies(genre_ids, content_type, page=1):
     url = f"https://api.themoviedb.org/3/discover/{content_type}"
@@ -66,15 +66,16 @@ def load_from_cache(content_id, content_type):
     path = get_cache_path(content_id, content_type)
     if not os.path.exists(path):
         return None
-    
-    last_modified = os.path.getmtime(path)
-    now = time.time()
-    age = now - last_modified
-    if age > CACHE_EXPIRATION_SECONDS:
-        print(f"Cache expired for {content_id}_({content_type}), fetching new data")
-        os.remove(path)
-        print(f"Deleted expired cache {path}")
-        return None
-    
     print(f"Loaded cache for {content_id}_{content_type}")
     return pd.read_csv(path)
+
+def clean_expired_cache():
+    now = time.time()
+    for filename in os.listdir(CACHE_DIR):
+        if filename.endswith(".csv"):
+            path = os.path.join(CACHE_DIR, filename)
+            last_modified = os.path.getmtime(path)
+            age = now - last_modified
+            if age > CACHE_EXPIRATION_SECONDS:
+                os.remove(path)
+                print(f"Cache expired and deleted: {path}")

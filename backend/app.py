@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from fetch_movies import get_all_movies, save_to_csv, load_from_cache, save_to_cache
+from fetch_movies import get_all_movies, save_to_csv, save_to_cache, load_from_cache, clean_expired_cache
 from recommendations import recommend_movies
+
+import threading
+import time
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -40,5 +43,11 @@ def recommendations_route():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+def background_cache_cleaner():
+    while True:
+        clean_expired_cache()
+        time.sleep(6 * 60 * 60)
+
 if __name__ == "__main__":
+    threading.Thread(target=background_cache_cleaner, daemon=True).start()
     app.run(debug=True, port=5001)
